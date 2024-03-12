@@ -11,7 +11,7 @@ class searching extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
-            Flexible(
+            const Flexible(
               flex: 1,
               child: TextField(
                 decoration: InputDecoration(
@@ -24,31 +24,36 @@ class searching extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 8,
             ),
             TextButton(
               onPressed: () {
                 //여기가 누르면 검색 결과 나오게 하는 버튼
               },
-              child: Text('검색'),
+              child: const Text('검색'),
             ),
           ],
         ),
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, 
-        icon: Icon(Icons.arrow_back, color: Colors.black,size: 30,),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+            size: 30,
+          ),
         ),
         elevation: 0.0,
       ),
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+            margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
             width: 400,
             height: 4,
-            color: Color.fromARGB(255, 130, 173, 252),
+            color: const Color.fromARGB(255, 130, 173, 252),
           ),
         ],
       ),
