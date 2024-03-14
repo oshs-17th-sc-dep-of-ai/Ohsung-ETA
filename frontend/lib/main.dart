@@ -20,7 +20,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: '오성고에타',
       home: Loading(),
@@ -40,14 +40,15 @@ class _LoadingState extends State<Loading> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 3),() {
+    Timer(const Duration(seconds: 3), () {
       Navigator.pop(context);
       Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn()));
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return LoadingScreen();
+    return const LoadingScreen();
   }
 }
 
@@ -57,14 +58,13 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromRGBO(130, 173, 252, 1),
+      color: const Color.fromRGBO(130, 173, 252, 1),
       child: Center(
         child: Container(child: Image.asset("img/ohsunggo.png")),
       ),
     );
   }
 }
-
 
 class LogIn extends StatefulWidget {
   @override
@@ -79,12 +79,12 @@ class _LogInState extends State<LogIn> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('로그인'),
+        title: const Text('로그인'),
         elevation: 0.0,
-        backgroundColor: Color.fromRGBO(130, 173, 252, 1),
+        backgroundColor: const Color.fromRGBO(130, 173, 252, 1),
         centerTitle: true,
       ),
-      // email, password 입력하는 부분을 제외한 화면을 탭하면, 키보드 사라지게 GestureDetector 사용 
+      // email, password 입력하는 부분을 제외한 화면을 탭하면, 키보드 사라지게 GestureDetector 사용
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -92,38 +92,40 @@ class _LogInState extends State<LogIn> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(padding: EdgeInsets.only(top: 50)),
-              Center(
+              const Padding(padding: EdgeInsets.only(top: 50)),
+              const Center(
                 child: Image(
                   image: AssetImage('img/ohsunggo.png'),
                   width: 100.0,
                 ),
               ),
               Form(
-                child: Theme(
+                  child: Theme(
                 data: ThemeData(
                     primaryColor: Colors.white,
-                    inputDecorationTheme: InputDecorationTheme(
-                        labelStyle: TextStyle(color: Color.fromRGBO(130, 173, 252, 1)))),
+                    inputDecorationTheme: const InputDecorationTheme(
+                        labelStyle: TextStyle(
+                            color: Color.fromRGBO(130, 173, 252, 1)))),
                 child: Container(
-                    padding: EdgeInsets.all(40.0),
+                    padding: const EdgeInsets.all(40.0),
                     child: Builder(builder: (context) {
                       return Column(
                         children: [
                           TextField(
                             controller: controller,
                             autofocus: true,
-                            decoration: InputDecoration(labelText: 'email'),
+                            decoration:
+                                const InputDecoration(labelText: 'email'),
                             keyboardType: TextInputType.emailAddress,
                           ),
                           TextField(
                             controller: controller2,
                             decoration:
-                                InputDecoration(labelText: 'password'),
+                                const InputDecoration(labelText: 'password'),
                             keyboardType: TextInputType.text,
                             obscureText: true, // 비밀번호 안보이도록 하는 것
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 40.0,
                           ),
                           ButtonTheme(
@@ -137,22 +139,23 @@ class _LogInState extends State<LogIn> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                TempP()));
-                                  }
-                                  else if (controller.text == 'ETA' && controller2.text != '1234') {
-                                      showSnackBar(context, Text('비밀번호가 틀렸습니다.'));
-                                  }
-                                  else {
-                                    showSnackBar(context, Text('정보를 확인하세요'));
+                                                const TempP()));
+                                  } else if (controller.text == 'ETA' &&
+                                      controller2.text != '1234') {
+                                    showSnackBar(
+                                        context, const Text('비밀번호가 틀렸습니다.'));
+                                  } else {
+                                    showSnackBar(
+                                        context, const Text('정보를 확인하세요'));
                                   }
                                 },
-                                child: Icon(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.orangeAccent),
+                                child: const Icon(
                                   Icons.arrow_forward,
                                   color: Colors.white,
                                   size: 40.0,
                                 ),
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.orangeAccent),
                               ))
                         ],
                       );
@@ -169,7 +172,7 @@ class _LogInState extends State<LogIn> {
 void showSnackBar(BuildContext context, Text text) {
   final snackBar = SnackBar(
     content: text,
-    backgroundColor: Color.fromARGB(255, 112, 48, 48),
+    backgroundColor: const Color.fromARGB(255, 112, 48, 48),
   );
 
 // Find the ScaffoldMessenger in the widget tree
@@ -177,18 +180,16 @@ void showSnackBar(BuildContext context, Text text) {
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
 
-
-
 class NoticeBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
-    double realwid = screenwidth/6;
+    double realwid = screenwidth / 6;
     double screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 90,
-        title: Text(
+        title: const Text(
           '게시판',
           style: TextStyle(
             fontSize: 50,
@@ -196,271 +197,272 @@ class NoticeBoard extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(130, 173, 252, 1),
+        backgroundColor: const Color.fromRGBO(130, 173, 252, 1),
         elevation: 0.0,
         leading: Container(
-          child: Image.asset('img/ohsunggo.png',),
-          margin: EdgeInsets.only(left: 30),
+          margin: const EdgeInsets.only(left: 30),
+          child: Image.asset(
+            'img/ohsunggo.png',
+          ),
         ),
         leadingWidth: 100,
       ),
-
       body: Column(
         children: [
           Container(
-            color: Color(0xffDCE8FF),
+            color: const Color(0xffDCE8FF),
             height: 60.0,
             child: ListView(
               scrollDirection: Axis.horizontal,
-             children: <Widget>[
-               //자유게시판
-               Container(
+              children: <Widget>[
+                //자유게시판
+                Container(
                   width: 90,
-                 margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: TextButton(onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => freeboard(),
-                      )
-                    );
-                  }, child: Text(
-                    '자유',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                  margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => freeboard(),
+                          ));
+                    },
+                    child: const Text(
+                      '자유',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
                   ),
                 ),
                 //동아리
                 Container(
                   width: 90,
-                  margin: EdgeInsets.fromLTRB(0, 10, 15, 10),
+                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: TextButton(onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => clubboard(),
-                      )
-                    );
-                  }, child: Text(
-                    '동아리',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => clubboard(),
+                          ));
+                    },
+                    child: const Text(
+                      '동아리',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
                   ),
                 ),
                 //공지
                 Container(
                   width: 90,
-                  margin: EdgeInsets.fromLTRB(0, 10, 15, 10),
+                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: TextButton(onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => noteboard(),
-                      )
-                    );
-                  }, child: Text(
-                    '공지',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => noteboard(),
+                          ));
+                    },
+                    child: const Text(
+                      '공지',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
                   ),
                 ),
                 //질문
                 Container(
                   width: 90,
-                  margin: EdgeInsets.fromLTRB(0, 10, 15, 10),
+                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: TextButton(onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => askboard(),
-                      )
-                    );
-                  }, child: Text(
-                    '질문',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => askboard(),
+                          ));
+                    },
+                    child: const Text(
+                      '질문',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
                   ),
                 ),
                 //졸업생
                 Container(
                   width: 90,
-                  margin: EdgeInsets.fromLTRB(0, 10, 15, 10),
+                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: TextButton(onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => graduateboard(),
-                      )
-                    );
-                  }, child: Text(
-                    '졸업생',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => graduateboard(),
+                          ));
+                    },
+                    child: const Text(
+                      '졸업생',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
                   ),
                 ),
                 //1학년
                 Container(
                   width: 90,
-                  margin: EdgeInsets.fromLTRB(0, 10, 15, 10),
+                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: TextButton(onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => onegboard(),
-                      )
-                    );
-                  }, child: Text(
-                    '1학년',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => onegboard(),
+                          ));
+                    },
+                    child: const Text(
+                      '1학년',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
                   ),
                 ),
                 //2학년
                 Container(
                   width: 90,
-                  margin: EdgeInsets.fromLTRB(0, 10, 15, 10),
+                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: TextButton(onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => twogboard(),
-                      )
-                    );
-                  }, child: Text(
-                    '2학년',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => twogboard(),
+                          ));
+                    },
+                    child: const Text(
+                      '2학년',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
                   ),
                 ),
                 //3학년
                 Container(
                   width: 90,
-                  margin: EdgeInsets.fromLTRB(0, 10, 15, 10),
+                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: TextButton(onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => threegboard(),
-                      )
-                    );
-                  }, child: Text(
-                    '3학년',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => threegboard(),
+                          ));
+                    },
+                    child: const Text(
+                      '3학년',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
                   ),
                 ),
                 //홍보
                 Container(
                   width: 90,
-                  margin: EdgeInsets.fromLTRB(0, 10, 15, 10),
+                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: TextButton(onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => adsboard(),
-                      )
-                    );
-                  }, child: Text(
-                    '홍보',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => adsboard(),
+                          ));
+                    },
+                    child: const Text(
+                      '홍보',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
                   ),
                 ),
                 //피드백
                 Container(
                   width: 90,
-                  margin: EdgeInsets.fromLTRB(0, 10, 15, 10),
+                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: TextButton(onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => singoboard(),
-                      )
-                    );
-                  }, child: Text(
-                    '피드백',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => singoboard(),
+                          ));
+                    },
+                    child: const Text(
+                      '피드백',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
                   ),
                 ),
               ],
@@ -469,11 +471,11 @@ class NoticeBoard extends StatelessWidget {
           Container(
             width: 400,
             height: 60,
-            margin: EdgeInsets.fromLTRB(10, 20, 0, 0),
+            margin: const EdgeInsets.fromLTRB(10, 20, 0, 0),
             child: Row(
               children: [
                 Container(
-                  child: Text(
+                  child: const Text(
                     '인기글',
                     style: TextStyle(
                       fontSize: 37,
@@ -483,7 +485,7 @@ class NoticeBoard extends StatelessWidget {
                 ),
                 Container(
                   width: 40,
-                  margin: EdgeInsets.only(top: 5),
+                  margin: const EdgeInsets.only(top: 5),
                   child: Image.asset('img/fire.png'),
                 ),
               ],
@@ -492,176 +494,214 @@ class NoticeBoard extends StatelessWidget {
           Container(
             width: 400,
             height: 3,
-            color: Color(0xffA0C1FF),
+            color: const Color(0xffA0C1FF),
           ),
           Container(
             child: Column(
               children: [
                 Container(
                   width: 380,
-                  height: (screenheight-70-90-25-90-60),
+                  height: (screenheight - 70 - 90 - 25 - 90 - 60),
                   child: ListView(
                     scrollDirection: Axis.vertical,
                     children: [
                       Container(
                         width: 380,
                         height: 90,
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color.fromARGB(60, 0, 0, 0), width: 1),
-                          color: Color(0xffEFEFEF),
+                          border: Border.all(
+                              color: const Color.fromARGB(60, 0, 0, 0),
+                              width: 1),
+                          color: const Color(0xffEFEFEF),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextButton(onPressed: (){
-                          //해당게시물로 가기
-                          print('hello');
-                        }, child: Text('')),
+                        child: TextButton(
+                            onPressed: () {
+                              //해당게시물로 가기
+                              print('hello');
+                            },
+                            child: const Text('')),
                       ),
                       Container(
                         width: 380,
                         height: 90,
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color.fromARGB(60, 0, 0, 0), width: 1),
-                          color: Color(0xffEFEFEF),
+                          border: Border.all(
+                              color: const Color.fromARGB(60, 0, 0, 0),
+                              width: 1),
+                          color: const Color(0xffEFEFEF),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextButton(onPressed: (){
-                          //해당게시물로 가기
-                          print('hello');
-                        }, child: Text('')),
+                        child: TextButton(
+                            onPressed: () {
+                              //해당게시물로 가기
+                              print('hello');
+                            },
+                            child: const Text('')),
                       ),
                       Container(
                         width: 380,
                         height: 90,
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color.fromARGB(60, 0, 0, 0), width: 1),
-                          color: Color(0xffEFEFEF),
+                          border: Border.all(
+                              color: const Color.fromARGB(60, 0, 0, 0),
+                              width: 1),
+                          color: const Color(0xffEFEFEF),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextButton(onPressed: (){
-                          //해당게시물로 가기
-                          print('hello');
-                        }, child: Text('')),
+                        child: TextButton(
+                            onPressed: () {
+                              //해당게시물로 가기
+                              print('hello');
+                            },
+                            child: const Text('')),
                       ),
                       Container(
                         width: 380,
                         height: 90,
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color.fromARGB(60, 0, 0, 0), width: 1),
-                          color: Color(0xffEFEFEF),
+                          border: Border.all(
+                              color: const Color.fromARGB(60, 0, 0, 0),
+                              width: 1),
+                          color: const Color(0xffEFEFEF),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextButton(onPressed: (){
-                          //해당게시물로 가기
-                          print('hello');
-                        }, child: Text('')),
+                        child: TextButton(
+                            onPressed: () {
+                              //해당게시물로 가기
+                              print('hello');
+                            },
+                            child: const Text('')),
                       ),
                       Container(
                         width: 380,
                         height: 90,
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color.fromARGB(60, 0, 0, 0), width: 1),
-                          color: Color(0xffEFEFEF),
+                          border: Border.all(
+                              color: const Color.fromARGB(60, 0, 0, 0),
+                              width: 1),
+                          color: const Color(0xffEFEFEF),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextButton(onPressed: (){
-                          //해당게시물로 가기
-                          print('hello');
-                        }, child: Text('')),
+                        child: TextButton(
+                            onPressed: () {
+                              //해당게시물로 가기
+                              print('hello');
+                            },
+                            child: const Text('')),
                       ),
                       Container(
                         width: 380,
                         height: 90,
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color.fromARGB(60, 0, 0, 0), width: 1),
-                          color: Color(0xffEFEFEF),
+                          border: Border.all(
+                              color: const Color.fromARGB(60, 0, 0, 0),
+                              width: 1),
+                          color: const Color(0xffEFEFEF),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextButton(onPressed: (){
-                          //해당게시물로 가기
-                          print('hello');
-                        }, child: Text('')),
+                        child: TextButton(
+                            onPressed: () {
+                              //해당게시물로 가기
+                              print('hello');
+                            },
+                            child: const Text('')),
                       ),
                       Container(
                         width: 380,
                         height: 90,
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color.fromARGB(60, 0, 0, 0), width: 1),
-                          color: Color(0xffEFEFEF),
+                          border: Border.all(
+                              color: const Color.fromARGB(60, 0, 0, 0),
+                              width: 1),
+                          color: const Color(0xffEFEFEF),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextButton(onPressed: (){
-                          //해당게시물로 가기
-                          print('hello');
-                        }, child: Text('')),
+                        child: TextButton(
+                            onPressed: () {
+                              //해당게시물로 가기
+                              print('hello');
+                            },
+                            child: const Text('')),
                       ),
                       Container(
                         width: 380,
                         height: 90,
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color.fromARGB(60, 0, 0, 0), width: 1),
-                          color: Color(0xffEFEFEF),
+                          border: Border.all(
+                              color: const Color.fromARGB(60, 0, 0, 0),
+                              width: 1),
+                          color: const Color(0xffEFEFEF),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextButton(onPressed: (){
-                          //해당게시물로 가기
-                          print('hello');
-                        }, child: Text('')),
+                        child: TextButton(
+                            onPressed: () {
+                              //해당게시물로 가기
+                              print('hello');
+                            },
+                            child: const Text('')),
                       ),
                       Container(
                         width: 380,
                         height: 90,
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color.fromARGB(60, 0, 0, 0), width: 1),
-                          color: Color(0xffEFEFEF),
+                          border: Border.all(
+                              color: const Color.fromARGB(60, 0, 0, 0),
+                              width: 1),
+                          color: const Color(0xffEFEFEF),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextButton(onPressed: (){
-                          //해당게시물로 가기
-                          print('hello');
-                        }, child: Text('')),
+                        child: TextButton(
+                            onPressed: () {
+                              //해당게시물로 가기
+                              print('hello');
+                            },
+                            child: const Text('')),
                       ),
                       Container(
                         width: 380,
                         height: 90,
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color.fromARGB(60, 0, 0, 0), width: 1),
-                          color: Color(0xffEFEFEF),
+                          border: Border.all(
+                              color: const Color.fromARGB(60, 0, 0, 0),
+                              width: 1),
+                          color: const Color(0xffEFEFEF),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextButton(onPressed: (){
-                          //해당게시물로 가기
-                          print('hello');
-                        }, child: Text('')),
+                        child: TextButton(
+                            onPressed: () {
+                              //해당게시물로 가기
+                              print('hello');
+                            },
+                            child: const Text('')),
                       ),
                     ],
                   ),
                 ),
-                
               ],
             ),
           ),
         ],
       ),
       bottomNavigationBar: Row(children: [
-       Container(
+        Container(
           width: realwid,
           height: 70,
-          margin: EdgeInsets.only(left: realwid/6),
+          margin: EdgeInsets.only(left: realwid / 6),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10)
-          ),
-          child: IconButton(onPressed:(){},
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          child: IconButton(
+            onPressed: () {},
             icon: Icon(Icons.alarm),
             iconSize: 40,
             color: Color.fromARGB(60, 244, 67, 54),
@@ -670,12 +710,11 @@ class NoticeBoard extends StatelessWidget {
         Container(
           width: realwid,
           height: 70,
-          margin: EdgeInsets.only(left: realwid/6),
+          margin: EdgeInsets.only(left: realwid / 6),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10)
-          ),
-          child: IconButton(onPressed:(){},
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          child: IconButton(
+            onPressed: () {},
             icon: Icon(Icons.bento_outlined),
             iconSize: 40,
             color: Color.fromARGB(60, 53, 233, 221),
@@ -684,12 +723,15 @@ class NoticeBoard extends StatelessWidget {
         Container(
           width: realwid,
           height: 70,
-          margin: EdgeInsets.only(left: realwid/6),
+          margin: EdgeInsets.only(left: realwid / 6),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10)
-          ),
-          child: IconButton(onPressed:(){Navigator.pop(context);Navigator.push(context, MaterialPageRoute(builder: (context) => NoticeBoard()));},
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => NoticeBoard()));
+            },
             icon: Icon(Icons.note_alt_outlined),
             iconSize: 40,
             color: Color(0xff41D96C),
@@ -698,12 +740,15 @@ class NoticeBoard extends StatelessWidget {
         Container(
           width: realwid,
           height: 70,
-          margin: EdgeInsets.only(left: realwid/6),
+          margin: EdgeInsets.only(left: realwid / 6),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10)
-          ),
-          child: IconButton(onPressed:(){Navigator.pop(context);Navigator.push(context, MaterialPageRoute(builder: (context) => firstScoreboard()));},
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => firstScoreboard()));
+            },
             icon: Icon(Icons.grade_outlined),
             iconSize: 40,
             color: Color.fromARGB(60, 255, 170, 0),
@@ -712,21 +757,17 @@ class NoticeBoard extends StatelessWidget {
         Container(
           width: realwid,
           height: 70,
-          margin: EdgeInsets.only(left: realwid/6),
+          margin: EdgeInsets.only(left: realwid / 6),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10)
-          ),
-          child: IconButton(onPressed:(){},
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          child: IconButton(
+            onPressed: () {},
             icon: Icon(Icons.face),
             iconSize: 40,
             color: Color.fromARGB(60, 0, 132, 255),
           ),
         ),
-
-
       ]),
-
     );
   }
 }
