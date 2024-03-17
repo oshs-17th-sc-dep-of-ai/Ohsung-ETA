@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class searching extends StatelessWidget {
+class Searching extends StatelessWidget {
   final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {

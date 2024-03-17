@@ -182,16 +182,16 @@ void showSnackBar(BuildContext context, Text text) {
 
 class NoticeBoard extends StatelessWidget {
   final List<Map<String, dynamic>> categories = [
-    {"title": "자유", "widget": freeboard()},
-    {"title": "동아리", "widget": clubboard()},
-    {"title": "공지", "widget": noteboard()},
-    {"title": "질문", "widget": askboard()},
-    {"title": "졸업생", "widget": graduateboard()},
-    {"title": "1학년", "widget": onegboard()},
-    {"title": "2학년", "widget": twogboard()},
-    {"title": "3학년", "widget": threegboard()},
-    {"title": "홍보", "widget": adsboard()},
-    {"title": "피드백", "widget": singoboard()},
+    {"title": "자유", "widget": FreeBoard()},
+    {"title": "동아리", "widget": ClubBoard()},
+    {"title": "공지", "widget": NoteBoard()},
+    {"title": "질문", "widget": AskBoard()},
+    {"title": "졸업생", "widget": GraduateBoard()},
+    {"title": "1학년", "widget": OnegBoard()},
+    {"title": "2학년", "widget": TwogBoard()},
+    {"title": "3학년", "widget": ThreegBoard()},
+    {"title": "홍보", "widget": AdsBoard()},
+    {"title": "피드백", "widget": SingoBoard()},
   ];
 
   @override
