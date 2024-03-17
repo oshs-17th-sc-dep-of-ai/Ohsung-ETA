@@ -86,97 +86,39 @@ class LastInput extends StatelessWidget {
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
     return Container(
-        width: screenwidth * 0.7,
-        height: screenheight * 0.3,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Container(
-                width: screenwidth * 0.3,
-                height: screenheight * 0.05,
-                child: ElevatedButton(
-                    onPressed: () async {
-                      Navigator.pop(context);
-                      await Navigator.push(
+      width: screenwidth * 0.7,
+      height: screenheight * 0.3,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (int grade = 1; grade <= 3; grade++) // 학년
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (int semester = 1; semester <= 2; semester++) // 학기
+                  Container(
+                    width: screenwidth * 0.3,
+                    height: screenheight * 0.05,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        Navigator.pop(context);
+                        await Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => LastScore(grade: 1)));
-                      func();
-                    },
-                    child: Text("1학년 1학기")),
-              ),
-              Container(width: screenwidth * 0.05, height: screenheight * 0.05),
-              Container(
-                width: screenwidth * 0.3,
-                height: screenheight * 0.05,
-                child: ElevatedButton(
-                    onPressed: () async {
-                      Navigator.pop(context);
-                      await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LastScore(grade: 2)));
-                      func();
-                    },
-                    child: Text("1학년 2학기")),
-              ),
-            ]),
-            Container(
-              height: screenheight * 0.07,
+                            builder: (context) =>
+                                LastScore(grade: grade, semester: semester),
+                          ),
+                        );
+                        func();
+                      },
+                      child: Text("$grade 학년 $semester 학기"),
+                    ),
+                  ),
+              ],
             ),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Container(
-                width: screenwidth * 0.3,
-                height: screenheight * 0.05,
-                child: ElevatedButton(
-                    onPressed: () async {
-                      Navigator.pop(context);
-                      await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LastScore(grade: 3)));
-                      func();
-                    },
-                    child: Text("2학년 1학기")),
-              ),
-              Container(width: screenwidth * 0.05, height: screenheight * 0.05),
-              Container(
-                width: screenwidth * 0.3,
-                height: screenheight * 0.05,
-                child: ElevatedButton(
-                    onPressed: () async {
-                      Navigator.pop(context);
-                      await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LastScore(grade: 4)));
-                      func();
-                    },
-                    child: Text("2학년 2학기")),
-              ),
-            ]),
-            Container(
-              height: screenheight * 0.07,
-            ),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Container(
-                width: screenwidth * 0.3,
-                height: screenheight * 0.05,
-                child: ElevatedButton(
-                    onPressed: () async {
-                      Navigator.pop(context);
-                      await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LastScore(grade: 5)));
-                      func();
-                    },
-                    child: Text("3학년 1학기")),
-              ),
-            ]),
-          ],
-        ));
+        ],
+      ),
+    );
   }
 }
 

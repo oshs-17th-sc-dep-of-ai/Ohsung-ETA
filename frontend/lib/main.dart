@@ -38,7 +38,7 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
   @override
   void initState() {
-    // TODO: implement initState
+// TODO: implement initState
     super.initState();
     Timer(const Duration(seconds: 3), () {
       Navigator.pop(context);
@@ -84,7 +84,7 @@ class _LogInState extends State<LogIn> {
         backgroundColor: const Color.fromRGBO(130, 173, 252, 1),
         centerTitle: true,
       ),
-      // email, password 입력하는 부분을 제외한 화면을 탭하면, 키보드 사라지게 GestureDetector 사용
+// email, password 입력하는 부분을 제외한 화면을 탭하면, 키보드 사라지게 GestureDetector 사용
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -181,6 +181,19 @@ void showSnackBar(BuildContext context, Text text) {
 }
 
 class NoticeBoard extends StatelessWidget {
+  final List<Map<String, dynamic>> categories = [
+    {"title": "자유", "widget": freeboard()},
+    {"title": "동아리", "widget": clubboard()},
+    {"title": "공지", "widget": noteboard()},
+    {"title": "질문", "widget": askboard()},
+    {"title": "졸업생", "widget": graduateboard()},
+    {"title": "1학년", "widget": onegboard()},
+    {"title": "2학년", "widget": twogboard()},
+    {"title": "3학년", "widget": threegboard()},
+    {"title": "홍보", "widget": adsboard()},
+    {"title": "피드백", "widget": singoboard()},
+  ];
+
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
@@ -212,260 +225,36 @@ class NoticeBoard extends StatelessWidget {
           Container(
             color: const Color(0xffDCE8FF),
             height: 60.0,
-            child: ListView(
+            child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                //자유게시판
-                Container(
+              itemCount: categories.length,
+              itemBuilder: (context, index) {
+                return Container(
                   width: 90,
-                  margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                  margin: EdgeInsets.fromLTRB(index == 0 ? 15 : 0, 10, 15, 10),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(8)),
                   child: TextButton(
                     onPressed: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => freeboard(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => categories[index]["widget"],
+                        ),
+                      );
                     },
-                    child: const Text(
-                      '자유',
-                      style: TextStyle(
+                    child: Text(
+                      categories[index]["title"],
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                ),
-                //동아리
-                Container(
-                  width: 90,
-                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => clubboard(),
-                          ));
-                    },
-                    child: const Text(
-                      '동아리',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                //공지
-                Container(
-                  width: 90,
-                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => noteboard(),
-                          ));
-                    },
-                    child: const Text(
-                      '공지',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                //질문
-                Container(
-                  width: 90,
-                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => askboard(),
-                          ));
-                    },
-                    child: const Text(
-                      '질문',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                //졸업생
-                Container(
-                  width: 90,
-                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => graduateboard(),
-                          ));
-                    },
-                    child: const Text(
-                      '졸업생',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                //1학년
-                Container(
-                  width: 90,
-                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => onegboard(),
-                          ));
-                    },
-                    child: const Text(
-                      '1학년',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                //2학년
-                Container(
-                  width: 90,
-                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => twogboard(),
-                          ));
-                    },
-                    child: const Text(
-                      '2학년',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                //3학년
-                Container(
-                  width: 90,
-                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => threegboard(),
-                          ));
-                    },
-                    child: const Text(
-                      '3학년',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                //홍보
-                Container(
-                  width: 90,
-                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => adsboard(),
-                          ));
-                    },
-                    child: const Text(
-                      '홍보',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                //피드백
-                Container(
-                  width: 90,
-                  margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => singoboard(),
-                          ));
-                    },
-                    child: const Text(
-                      '피드백',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                );
+              },
             ),
           ),
           Container(
@@ -504,8 +293,8 @@ class NoticeBoard extends StatelessWidget {
                   height: (screenheight - 70 - 90 - 25 - 90 - 60),
                   child: ListView(
                     scrollDirection: Axis.vertical,
-                    children: [
-                      Container(
+                    children: List.generate(10, (index) {
+                      return Container(
                         width: 380,
                         height: 90,
                         margin: const EdgeInsets.only(top: 20),
@@ -517,175 +306,14 @@ class NoticeBoard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: TextButton(
-                            onPressed: () {
-                              //해당게시물로 가기
-                              print('hello');
-                            },
-                            child: const Text('')),
-                      ),
-                      Container(
-                        width: 380,
-                        height: 90,
-                        margin: const EdgeInsets.only(top: 20),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color.fromARGB(60, 0, 0, 0),
-                              width: 1),
-                          color: const Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(10),
+                          onPressed: () {
+                            //해당게시물로 가기
+                            print('hello');
+                          },
+                          child: const Text(''),
                         ),
-                        child: TextButton(
-                            onPressed: () {
-                              //해당게시물로 가기
-                              print('hello');
-                            },
-                            child: const Text('')),
-                      ),
-                      Container(
-                        width: 380,
-                        height: 90,
-                        margin: const EdgeInsets.only(top: 20),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color.fromARGB(60, 0, 0, 0),
-                              width: 1),
-                          color: const Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextButton(
-                            onPressed: () {
-                              //해당게시물로 가기
-                              print('hello');
-                            },
-                            child: const Text('')),
-                      ),
-                      Container(
-                        width: 380,
-                        height: 90,
-                        margin: const EdgeInsets.only(top: 20),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color.fromARGB(60, 0, 0, 0),
-                              width: 1),
-                          color: const Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextButton(
-                            onPressed: () {
-                              //해당게시물로 가기
-                              print('hello');
-                            },
-                            child: const Text('')),
-                      ),
-                      Container(
-                        width: 380,
-                        height: 90,
-                        margin: const EdgeInsets.only(top: 20),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color.fromARGB(60, 0, 0, 0),
-                              width: 1),
-                          color: const Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextButton(
-                            onPressed: () {
-                              //해당게시물로 가기
-                              print('hello');
-                            },
-                            child: const Text('')),
-                      ),
-                      Container(
-                        width: 380,
-                        height: 90,
-                        margin: const EdgeInsets.only(top: 20),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color.fromARGB(60, 0, 0, 0),
-                              width: 1),
-                          color: const Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextButton(
-                            onPressed: () {
-                              //해당게시물로 가기
-                              print('hello');
-                            },
-                            child: const Text('')),
-                      ),
-                      Container(
-                        width: 380,
-                        height: 90,
-                        margin: const EdgeInsets.only(top: 20),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color.fromARGB(60, 0, 0, 0),
-                              width: 1),
-                          color: const Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextButton(
-                            onPressed: () {
-                              //해당게시물로 가기
-                              print('hello');
-                            },
-                            child: const Text('')),
-                      ),
-                      Container(
-                        width: 380,
-                        height: 90,
-                        margin: const EdgeInsets.only(top: 20),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color.fromARGB(60, 0, 0, 0),
-                              width: 1),
-                          color: const Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextButton(
-                            onPressed: () {
-                              //해당게시물로 가기
-                              print('hello');
-                            },
-                            child: const Text('')),
-                      ),
-                      Container(
-                        width: 380,
-                        height: 90,
-                        margin: const EdgeInsets.only(top: 20),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color.fromARGB(60, 0, 0, 0),
-                              width: 1),
-                          color: const Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextButton(
-                            onPressed: () {
-                              //해당게시물로 가기
-                              print('hello');
-                            },
-                            child: const Text('')),
-                      ),
-                      Container(
-                        width: 380,
-                        height: 90,
-                        margin: const EdgeInsets.only(top: 20),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color.fromARGB(60, 0, 0, 0),
-                              width: 1),
-                          color: const Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextButton(
-                            onPressed: () {
-                              //해당게시물로 가기
-                              print('hello');
-                            },
-                            child: const Text('')),
-                      ),
-                    ],
+                      );
+                    }),
                   ),
                 ),
               ],
@@ -693,81 +321,52 @@ class NoticeBoard extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Row(children: [
-        Container(
-          width: realwid,
-          height: 70,
-          margin: EdgeInsets.only(left: realwid / 6),
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(10)),
-          child: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.alarm),
-            iconSize: 40,
-            color: Color.fromARGB(60, 244, 67, 54),
-          ),
-        ),
-        Container(
-          width: realwid,
-          height: 70,
-          margin: EdgeInsets.only(left: realwid / 6),
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(10)),
-          child: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.bento_outlined),
-            iconSize: 40,
-            color: Color.fromARGB(60, 53, 233, 221),
-          ),
-        ),
-        Container(
-          width: realwid,
-          height: 70,
-          margin: EdgeInsets.only(left: realwid / 6),
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(10)),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NoticeBoard()));
-            },
-            icon: Icon(Icons.note_alt_outlined),
-            iconSize: 40,
-            color: Color(0xff41D96C),
-          ),
-        ),
-        Container(
-          width: realwid,
-          height: 70,
-          margin: EdgeInsets.only(left: realwid / 6),
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(10)),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => firstScoreboard()));
-            },
-            icon: Icon(Icons.grade_outlined),
-            iconSize: 40,
-            color: Color.fromARGB(60, 255, 170, 0),
-          ),
-        ),
-        Container(
-          width: realwid,
-          height: 70,
-          margin: EdgeInsets.only(left: realwid / 6),
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(10)),
-          child: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.face),
-            iconSize: 40,
-            color: Color.fromARGB(60, 0, 132, 255),
-          ),
-        ),
-      ]),
+      bottomNavigationBar: Row(
+        children: [
+          for (final icon in [
+            Icons.alarm,
+            Icons.bento_outlined,
+            Icons.note_alt_outlined,
+            Icons.grade_outlined,
+            Icons.face,
+          ])
+            Container(
+              width: realwid,
+              height: 70,
+              margin: EdgeInsets.only(left: realwid / 6),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: IconButton(
+                onPressed: () {
+                  if (icon == Icons.note_alt_outlined) {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NoticeBoard(),
+                      ),
+                    );
+                  } else if (icon == Icons.grade_outlined) {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => firstScoreboard(),
+                      ),
+                    );
+                  }
+                },
+                icon: Icon(icon),
+                iconSize: 40,
+                color: icon == Icons.note_alt_outlined
+                    ? const Color(0xff41D96C)
+                    : const Color.fromARGB(60, 255, 170, 0),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
