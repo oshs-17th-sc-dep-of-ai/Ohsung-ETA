@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:frontend/TempPage.dart';
 import 'package:frontend/moldboard.dart';
@@ -14,6 +16,8 @@ import 'package:frontend/notices/singo.dart';
 
 import "dart:async";
 
+import 'package:frontend/realBoard.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -22,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: '오성고에타',
+      title: '오성고에브리타임',
       home: Loading()
     );
   }
@@ -180,19 +184,15 @@ void showSnackBar(BuildContext context, Text text) {
 // and use it to show a SnackBar.
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
+List<String> _BoardTitle = ['자유','동아리','공지','질문','졸업생','1학년','2학년','3학년','홍보','피드백'];
 
 class NoticeBoard extends StatelessWidget {
+
+
   final List<Map<String, dynamic>> categories = [
-    {"title": "자유", "widget": FreeBoard()},
-    {"title": "동아리", "widget": ClubBoard()},
-    {"title": "공지", "widget": NoteBoard()},
-    {"title": "질문", "widget": AskBoard()},
-    {"title": "졸업생", "widget": GraduateBoard()},
-    {"title": "1학년", "widget": OnegBoard()},
-    {"title": "2학년", "widget": TwogBoard()},
-    {"title": "3학년", "widget": ThreegBoard()},
-    {"title": "홍보", "widget": AdsBoard()},
-    {"title": "피드백", "widget": SingoBoard()},
+
+    for(int i = 0;i<10;i++) 
+      {"title": _BoardTitle[i], "widget": Board(idx: i,)},
   ];
 
   @override
