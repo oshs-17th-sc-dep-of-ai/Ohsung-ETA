@@ -43,18 +43,15 @@ class _BasicState extends State<Basic> {
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 50,
-            title: Text(
-              '학기말',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            centerTitle: true,
-            backgroundColor: Color.fromRGBO(130, 173, 252, 1),
-            elevation: 0.0,
+      appBar: AppBar(
+        title: Text(
+          '학기말 성적 계산',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontSize: 22,
+          ),
+        ),
             leading: BackButton(onPressed: () {Navigator.pop(context);},),
             leadingWidth: 100,
 
@@ -62,6 +59,7 @@ class _BasicState extends State<Basic> {
       ),
       
       body: TabBarView(
+        physics: AlwaysScrollableScrollPhysics(),
         children: [
           for(int i = 0;i<3;i++)
             Column(

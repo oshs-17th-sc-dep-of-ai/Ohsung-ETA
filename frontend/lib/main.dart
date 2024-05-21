@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/TempPage.dart';
+import 'package:frontend/moldboard.dart';
 import 'package:frontend/notices/free.dart';
 import 'package:frontend/notices/club.dart';
 import 'package:frontend/notices/note.dart';
@@ -13,17 +14,16 @@ import 'package:frontend/notices/singo.dart';
 
 import "dart:async";
 
-import 'package:frontend/score.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: '오성고에타',
-      home: Loading(),
+      home: Loading()
     );
   }
 }
@@ -135,11 +135,12 @@ class _LogInState extends State<LogIn> {
                                 onPressed: () {
                                   if (controller.text == 'ETA' &&
                                       controller2.text == '1234') {
+                                    Navigator.pop(context);
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                const TempP()));
+                                                MoldBoard()));
                                   } else if (controller.text == 'ETA' &&
                                       controller2.text != '1234') {
                                     showSnackBar(
@@ -199,28 +200,7 @@ class NoticeBoard extends StatelessWidget {
     double screenwidth = MediaQuery.of(context).size.width;
     double realwid = screenwidth / 6;
     double screenheight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 90,
-        title: const Text(
-          '게시판',
-          style: TextStyle(
-            fontSize: 50,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: const Color.fromRGBO(130, 173, 252, 1),
-        elevation: 0.0,
-        leading: Container(
-          margin: const EdgeInsets.only(left: 30),
-          child: Image.asset(
-            'img/ohsunggo.png',
-          ),
-        ),
-        leadingWidth: 100,
-      ),
-      body: Column(
+    return Column(
         children: [
           Container(
             color: const Color(0xffDCE8FF),
@@ -320,53 +300,6 @@ class NoticeBoard extends StatelessWidget {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: Row(
-        children: [
-          for (final icon in [
-            Icons.alarm,
-            Icons.bento_outlined,
-            Icons.note_alt_outlined,
-            Icons.grade_outlined,
-            Icons.face,
-          ])
-            Container(
-              width: realwid,
-              height: 70,
-              margin: EdgeInsets.only(left: realwid / 6),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: IconButton(
-                onPressed: () {
-                  if (icon == Icons.note_alt_outlined) {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => NoticeBoard(),
-                      ),
-                    );
-                  } else if (icon == Icons.grade_outlined) {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => firstScoreboard(),
-                      ),
-                    );
-                  }
-                },
-                icon: Icon(icon),
-                iconSize: 40,
-                color: icon == Icons.note_alt_outlined
-                    ? const Color(0xff41D96C)
-                    : const Color.fromARGB(60, 255, 170, 0),
-              ),
-            ),
-        ],
-      ),
     );
   }
 }

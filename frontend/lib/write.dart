@@ -4,24 +4,22 @@ class WriteBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 90,
-          backgroundColor: const Color.fromARGB(255, 130, 173, 252),
-          elevation: 0.0,
-          title: const Text(
-            '글쓰기',
-            style: TextStyle(
-              fontSize: 50,
-              fontWeight: FontWeight.bold,
-            ),
+      appBar: AppBar(
+        title: Text(
+          '글 쓰기',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontSize: 22,
           ),
-          centerTitle: true,
-          leading: Container(
-            margin: const EdgeInsets.only(left: 30),
-            child: Image.asset(
-              'img/ohsunggo.png',
-            ),
-          ),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.black, size: 30),
+        ),
+
           leadingWidth: 100,
         ),
         body: mollu());

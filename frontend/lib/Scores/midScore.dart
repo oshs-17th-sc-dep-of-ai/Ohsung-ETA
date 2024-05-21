@@ -31,17 +31,14 @@ class _BasicState extends State<Basic> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 90,
         title: Text(
-          '중간고사',
+          '중간고사 계산기',
           style: TextStyle(
-            fontSize: 50,
             fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontSize: 22,
           ),
         ),
-        centerTitle: true,
-        backgroundColor: Color.fromRGBO(130, 173, 252, 1),
-        elevation: 0.0,
         leading: BackButton(),
         leadingWidth: 100,
       ),

@@ -221,108 +221,12 @@ class Basic extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
     double realwid = screenwidth/6;
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 90,
-        title: Text(
-          '내신 계산기',
-          style: TextStyle(
-            fontSize: 50,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Color.fromRGBO(130, 173, 252, 1),
-        elevation: 0.0,
-        leading: Container(
-          child: Image.asset('img/ohsunggo.png',),
-          margin: EdgeInsets.only(left: 30),
-        ),
-        leadingWidth: 100,
-      ),
-
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
         child: Column(children: [
           scoreGraph(),
           addScore(),
       ]),
-      ),
-      bottomNavigationBar: Row(children: [
-        Container(
-          width: realwid,
-          height: 70,
-          margin: EdgeInsets.only(left: realwid/6),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10)
-          ),
-          child: IconButton(onPressed:(){},
-            icon: Icon(Icons.alarm),
-            iconSize: 40,
-            color: Color.fromARGB(60, 244, 67, 54),
-          ),
-        ),
-        Container(
-          width: realwid,
-          height: 70,
-          margin: EdgeInsets.only(left: realwid/6),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10)
-          ),
-          child: IconButton(onPressed:(){},
-            icon: Icon(Icons.bento_outlined),
-            iconSize: 40,
-            color: Color.fromARGB(60, 53, 233, 221),
-          ),
-        ),
-        Container(
-          width: realwid,
-          height: 70,
-          margin: EdgeInsets.only(left: realwid/6),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10)
-          ),
-          child: IconButton(onPressed:(){Navigator.pop(context);Navigator.push(context, MaterialPageRoute(builder: (context) => NoticeBoard()));},
-            icon: Icon(Icons.note_alt_outlined),
-            iconSize: 40,
-            color: Color(0xff41D96C),
-          ),
-        ),
-        Container(
-          width: realwid,
-          height: 70,
-          margin: EdgeInsets.only(left: realwid/6),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10)
-          ),
-          child: IconButton(onPressed:(){Navigator.pop(context);Navigator.push(context, MaterialPageRoute(builder: (context) => firstScoreboard()));},
-            icon: Icon(Icons.grade_outlined),
-            iconSize: 40,
-            color: Color.fromARGB(60, 255, 170, 0),
-          ),
-        ),
-        Container(
-          width: realwid,
-          height: 70,
-          margin: EdgeInsets.only(left: realwid/6),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10)
-          ),
-          child: IconButton(onPressed:(){},
-            icon: Icon(Icons.face),
-            iconSize: 40,
-            color: Color.fromARGB(60, 0, 132, 255),
-          ),
-        ),
-
-      ]),
-
-
-    );
+      );
   }
 }
