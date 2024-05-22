@@ -190,8 +190,10 @@ class _inputoverlayState extends State<inputoverlay> {
                               ),
                             ],
                           ),
+                          
+                          Row(children: [
                           ButtonTheme(
-                            height: screenheight/3,
+                            height: 100,
                               child: ElevatedButton(
                                 onPressed: () {
                                   try {
@@ -215,7 +217,6 @@ class _inputoverlayState extends State<inputoverlay> {
                                     
 
                                   }
-                                  
                                 },
                                 child: Icon(
                                   Icons.check,
@@ -224,7 +225,28 @@ class _inputoverlayState extends State<inputoverlay> {
                                 ),
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.orangeAccent),
+                              )),
+                              Container(width: 20,),
+                              ButtonTheme(
+                            height: 100,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                    if(idx != -1) BS.removeAt(idx);
+                                    Navigator.pop(context);
+                                  
+                                },
+                                child: Icon(
+                                  Icons.remove_circle_outline,
+                                  color: Colors.white,
+                                  size: 40.0,
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.red),
                               ))
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          
+                          ),
                         ],
                       );
                     })),

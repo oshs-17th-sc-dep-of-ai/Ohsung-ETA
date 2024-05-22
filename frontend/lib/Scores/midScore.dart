@@ -25,6 +25,7 @@ class _BasicState extends State<Basic> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    BS = [];
   }
 
   @override
@@ -273,6 +274,8 @@ class _inputoverlayState extends State<inputoverlay> {
                               )
                             ],
                           ),
+
+                          Row(children: [
                           ButtonTheme(
                             height: 100,
                               child: ElevatedButton(
@@ -299,10 +302,7 @@ class _inputoverlayState extends State<inputoverlay> {
                                     content: wrongOverlay(),
                                   );
                                   }));
-                                    
-
                                   }
-                                  
                                 },
                                 child: Icon(
                                   Icons.check,
@@ -311,7 +311,29 @@ class _inputoverlayState extends State<inputoverlay> {
                                 ),
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.orangeAccent),
+                              )),
+                              Container(width: 20,),
+                              ButtonTheme(
+                            height: 100,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                    if(idx != -1) BS.removeAt(idx);
+                                    Navigator.pop(context);
+                                  
+                                },
+                                child: Icon(
+                                  Icons.remove_circle_outline,
+                                  color: Colors.white,
+                                  size: 40.0,
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.red),
                               ))
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          
+                          )
+                              
                         ],
                       );
                     })),
